@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Радио</title>
+</head>
+<body>
+    <div class="main">
+        <nav class="nav">
+            <div class="update" id="update">
+                &#8634;
+            </div>
+            <div class="burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+        <div class="main__body">
+            <div class="cover">
+                <img src="img/plug.png">
+            </div>
+            <div class="title">
+                <h1></h1>
+            </div>
+            <audio id="audio-player" preload="metadata">
+                <source src="" type="audio/aac">
+            </audio>
+            <div class="controls">
+                <button id="prev"></button>
+                <button id="play"></button>
+                <button id="pause"></button>
+                <button id="next"></button>
+            </div>
+        </div>
+    </div>
+    <div class="all__stations">
+        <ul class="all__stations-list">
+            
+        </ul>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
