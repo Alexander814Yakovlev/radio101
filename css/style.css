@@ -2,7 +2,9 @@ html {
     box-sizing: border-box;
 }
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: inherit;
 }
 
@@ -11,7 +13,11 @@ body {
     background-color: #dff2fd;
 }
 
-h1, h2, h3, p, ul {
+h1,
+h2,
+h3,
+p,
+ul {
     margin: 0;
     padding: 0;
 }
@@ -44,7 +50,7 @@ button:active {
 .update {
     position: absolute;
     top: 15px;
-    left:15px;
+    left: 15px;
     height: 40px;
     width: 40px;
     font-size: 50px;
@@ -98,6 +104,12 @@ button:active {
     text-align: center;
 }
 
+.manage__favorites {}
+
+.faorite {
+    font-size: 28px;
+}
+
 .controls {
     width: 60%;
     margin: 0 auto;
@@ -114,7 +126,7 @@ button:active {
     cursor: pointer;
 }
 
-.controls>button::before {
+/* .controls>button::before {
     font-size: 38px;
 }
 
@@ -132,7 +144,7 @@ button:active {
 
 #next::before {
     content: '\23ED';
-}
+} */
 
 .all__stations {
     position: absolute;
@@ -144,6 +156,37 @@ button:active {
     overflow: scroll;
     list-style: none;
 }
+
+.all__stations_head {
+    position: sticky;
+    top: 0;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #e5e5e5;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #4e7af5;
+    border-radius: 0 0 8px 8px;
+}
+
+.all {
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.favorite {
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    padding-top: 10px;
+}
+
 
 .thumb {
     width: 70px;

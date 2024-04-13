@@ -1,13 +1,22 @@
 let main = document.querySelector('.main')
+// Верхняя панель
 let update = document.getElementById('update')
 let burger = document.querySelector('.burger')
+// Обложка и название станции
 let cover = document.querySelector('.cover>img')
 let coverDeafault = 'img/plug.png'
-let audioPlayer = document.getElementById('audio-player')
 let stationTitle = document.querySelector('h1')
+// Тег аудио
+let audioPlayer = document.getElementById('audio-player')
+//  Боковое меню
 let rightMenu = document.querySelector('.all__stations')
 let rightMenuList = document.querySelector('.all__stations-list')
-
+let allStations = document.querySelector(".all")
+let favoriteStations = document.querySelector(".favorite")
+// Кнопка избранного
+let favoritesButton = document.getElementById('favorite')
+let icon = favoritesButton.querySelector("i")
+// Кнопки управления
 let playButton = document.getElementById('play')
 let pauseButton = document.getElementById('pause')
 let prevButton = document.getElementById('prev')
@@ -81,7 +90,13 @@ async function getStationList() {
 
 // Основные функции
 async function createStationList() {
+    rightMenuList.innerHTML = ""
     await getStationList()
+    drawStationList()
+    document.querySelector('h1').textContent = "Онлайн радио"
+}
+
+function drawStationList() {
     for (elem of stationList) {
         let li = document.createElement('li');
         let thumb = document.createElement('img')
@@ -103,7 +118,6 @@ async function createStationList() {
 
         })
     }
-    document.querySelector('h1').textContent = "Онлайн радио"
 }
 
 async function playStream(i) {
@@ -111,6 +125,13 @@ async function playStream(i) {
     stationTitle.textContent = currentStation.title;
     audioPlayer.src = currentStation.src;
     cover.src = currentStation.cover;
+    if (favoriteList.includes(stationList[i])) {
+        icon.classList.remove("lar")
+        icon.classList.add("las")
+    } else {
+        icon.classList.remove("las")
+        icon.classList.add("lar")
+    }
 
     audioPlayer.play();
     [pauseButton.hidden, playButton.hidden] = [false, true];
@@ -123,7 +144,7 @@ async function pauseStream() {
 
 
 // Обработка нажатий
-update.onclick = function() {
+update.onclick = function () {
     localStorage.removeItem('radio101');
     document.querySelector('h1').textContent = "Обновление списка станций..."
     createStationList()
@@ -139,6 +160,23 @@ burger.onclick = function () {
                 main.style.background = ''
             }
         })
+    }
+}
+
+favoritesButton.onclick = function () {
+    // Если станции нет в изранном
+    if (icon.classList.contains("lar")) {
+        icon.classList.remove('lar')
+        icon.classList.add("las")
+        favoriteList.push(stationList[currentStationIndex])
+        localStorage.setItem('radio101_favorite', JSON.stringify(favoriteList))
+    } else {
+        // Если станция есть в избранном
+        icon.classList.remove("las")
+        icon.classList.add("lar")
+        favoriteList = favoriteList.filter(x => x != stationList[currentStationIndex])
+        createFavoritesList()
+        localStorage.setItem('radio101_favorite', JSON.stringify(favoriteList))
     }
 }
 
@@ -170,4 +208,36 @@ prevButton.onclick = async function () {
     playStream(currentStationIndex);
 }
 
+// Создание боковогоменю при запуске приложения
 createStationList()
+
+// Избранное
+let favoriteList = localStorage.radio101_favorite ? JSON.parse(localStorage.radio101_favorite) : []
+
+document.addEventListener('click', function (e) {
+    if (e.target == allStations) {
+        if (allStations.classList.contains('active')) {
+            return;
+        } else {
+            allStations.classList.add("active")
+            favoriteStations.classList.remove('active')
+            createStationList()
+        }
+    }
+    if (e.target == favoriteStations) {
+        if (favoriteStations.classList.contains('active')) {
+            return;
+        } else {
+            favoriteStations.classList.add("active")
+            allStations.classList.remove("active")
+            createFavoritesList()
+        }
+    }
+})
+
+
+async function createFavoritesList() {
+    rightMenuList.innerHTML = ""
+    stationList = favoriteList
+    drawStationList()
+}

@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="css/line-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Радио</title>
 </head>
@@ -28,18 +30,23 @@
             <audio id="audio-player" preload="metadata">
                 <source src="" type="audio/aac">
             </audio>
+            <div class="manage__favorites">
+                <button id="favorite" class="faorite"><i class="lar la-star"></i></button>
+            </div>
             <div class="controls">
-                <button id="prev"></button>
-                <button id="play"></button>
-                <button id="pause"></button>
-                <button id="next"></button>
+                <button id="prev"><i class="las la-step-backward"></i></button>
+                <button id="play"><i class="las la-play"></i></button>
+                <button id="pause"><i class="las la-pause"></i></button>
+                <button id="next"><i class="las la-step-forward"></i></button>
             </div>
         </div>
     </div>
     <div class="all__stations">
-        <ul class="all__stations-list">
-            
-        </ul>
+        <div class="all__stations_head">
+            <div class="all active">Все</div>
+            <div class="favorite">Избранное</div>
+        </div>
+        <ul class="all__stations-list"></ul>
     </div>
 
     <script src="js/main.js"></script>
