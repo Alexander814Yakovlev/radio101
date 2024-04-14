@@ -104,8 +104,6 @@ button:active {
     text-align: center;
 }
 
-.manage__favorites {}
-
 .faorite {
     font-size: 28px;
 }
@@ -121,7 +119,6 @@ button:active {
     font-size: 28px;
     width: 40px;
     height: 40px;
-    padding: 10px;
     text-align: center;
     cursor: pointer;
 }
