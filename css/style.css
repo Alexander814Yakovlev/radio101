@@ -105,6 +105,33 @@ button:active {
     text-align: center;
 }
 
+.loader-animation {
+    height: 30px;
+    width: 80px;
+    background-color: greenyellow;
+    animation: loadbar 1.5s ease-in-out 1ms infinite;
+    animation-
+}
+
+@keyframes loadbar {
+    0% {
+        margin-left: -40px;
+    }
+
+
+
+    50% {
+        margin-left: calc(100% - 40px);
+    }
+
+
+
+    100% {
+        margin-left: -40px;
+    }
+
+}
+
 .faorite {
     font-size: 28px;
 }
